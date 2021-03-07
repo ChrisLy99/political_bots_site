@@ -68,7 +68,26 @@ We are adopting an unsupervised approach towards quantifying the term political 
 
 The question then largely boils down to the definition of similarity between news stations. We formally define the concept of similarity between two news stations to be the 
 
-$$1 - \frac{\Sigma\min(X_{1i}X_{2i})}{\Sigma\max(X_{1i}X_{2i})}$$ where $$X_{1i}$$ and $$X_{2i}$$ 
+$$
+1 - \frac{\Sigma\min(X_{1i}X_{2i})}{\Sigma\max(X_{1i}X_{2i})}$$ where $$X_{1i}$$ and $$X_{2i}
+$$ 
+
+$$
+\begin{aligned}
+  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
+      \vdots & \ddots & \vdots \\
+      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{aligned}
+$$
 
 are vectors of hashtag occurrences constructed from the timeline of users who recently retweeted news from the corresponding news station. To make the hashtags political in nature, the hashtag vectors are all subsampled under the same feature space as that obtained from the election dataset. In other words, we record every hashtag that occurred in the election dataset, and count the total occurrences of these hashtags in the timelines of users that interacted with each news station. For every pair of hashtag vectors constructed in this manner, where every element corresponds to the occurrence of a hashtag in a fixed hashtag space, the similarity is calculated according to the above formulation and the resultant value is assigned as the weight to the edges among nodes. 
 
