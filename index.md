@@ -12,6 +12,7 @@ Although most news media outlets already have a pretty well defined political al
 
 ## Data
 ### An overview of followers and traditionally believed politcal alignment
+
 | News/Media Outlet | Number of Followers | Traditional Political Alignment |
 |-------------------|---------------------|---------------------------------|
 | FoxNews           | 20M                 | Towards Right                   |
