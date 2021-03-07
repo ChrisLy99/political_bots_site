@@ -13,6 +13,21 @@ Although most news media outlets already have a pretty well defined political al
 ## Data
 ### An overview of followers and traditionally believed politcal alignment
 
+\begin{table}[]
+\caption{Descriptive Statistics on the Age of Males vs Females}
+\label{tab:my-table}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+                                                 & \multicolumn{1}{l}{\textbf{Male Age (Years)}} & \multicolumn{1}{l}{\textbf{Female Age (Years)}} \\ \midrule
+\multicolumn{1}{l|}{\textbf{Count}}              & 35,829                                        & 24,117                                          \\
+\multicolumn{1}{l|}{\textbf{Mean}}               & 32.02                                         & 32.82                                           \\
+\multicolumn{1}{l|}{\textbf{Standard Deviation}} & 9.03                                          & 10.03                                           \\
+\multicolumn{1}{l|}{\textbf{Min}}                & 18                                            & 18                                              \\
+\multicolumn{1}{l|}{\textbf{Median}}             & 30                                            & 30                                              \\
+\multicolumn{1}{l|}{\textbf{Max}}                & 110                                           & 110                                             \\ \bottomrule
+\end{tabular}
+\end{table}
+
 | News/Media Outlet | Number of Followers | Traditional Political Alignment |
 |-------------------|---------------------|---------------------------------|
 | FoxNews           | 20M                 | Towards Right                   |
