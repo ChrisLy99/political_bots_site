@@ -41,27 +41,48 @@ Our definition of a user that "actively interacts" with a news outlet is someone
 ### Exploratory Data Analysis
 As the end goal of our project is to utilize hashtag usage for comparison of news outlets, we wanted to begin by looking at the most commonly used hashtags relative to each news outlet. We believed that the most noticeable difference in hashtag trends would be politically motivated as the traditional consensus is that these eight news outlets all have some sort of political affiliation or bias in their reporting, attracting users of the same political alignment.
 
-To do this, we looked to aggregate hashtag frequencies and compare the distributions across each news outlet. There were a few common hashtags found across all eight news stations such as variations of “covid-19” and “trump”. These words have relatively neutral meaning in terms of political leaning and therefore looked into the effect of removing them in our methodology.   
+| Hashtags only found in left | Hashtags only found in right |
+|-----------------------------|------------------------------|
+| Blacklivesmatter            | Oann                         |
+| BidenHarris2020             | Antifa                       |
+| ConvictTrump                | Maga                         |
+| wearamask                   | pelosilovestrump             |
+|                             | stopthesteal                 |
+|                             | trump2020                    |
+|                             | americafirst                 |
+|                             | bidenlied                    |
+|                             | bidencheated                 |
 
-Our first visualization was a "Word Cloud" designed to display the most popular hashtags used in each news outlet. We hypothesized that there will be a quantifiable difference in the hashtags used by users of each news outlet due to the difference in population of their active users. 
+To do this, we looked to aggregate hashtag frequencies and compare the distributions across each news outlet. There were a few common hashtags found across all eight news stations such as variations of “covid-19” and “trump”. These words have relatively neutral meaning in terms of political leaning and therefore looked into the effect of removing them in our methodology. 
 
-A brief glimpse into the figures below show that there is indeed a noticeable difference in hashtag usage between users of each news outlet. We found that politically charged words are the most prevalent separation between each collection of hashtags and 
+| Shared hashtags with differing connotations |
+|---------------------------------------------|
+| covid19                                     |
+| breaking                                    |
+| coronavirus                                 |
+| trump                                       |
+| fbi                                         |
+| election2020                                |
+| biden                                       |
+| china                                       |
+| georgia                                     |
 
-![gras](figures\BBCWorld_hashtag_counts.png)
-![gras](figures\BreitbartNews_hashtag_counts.png)
-![gras](figures\CBSNews_hashtag_counts.png)
-![gras](figures\CNN_hashtag_counts.png)
-![gras](figures\FoxNews_hashtag_counts.png)
-![gras](figures\MSNBC_hashtag_counts.png)
-![gras](figures\NYTimes_hashtag_counts.png)
-![gras](figures\RTAmerica_hashtag_counts.png)
+Our first visualization was a horizontal bar chart designed to display the most popular hashtags used in each news outlet. We hypothesized that there will be a quantifiable difference in the hashtags used by users of each news outlet due to the difference in population of their active users. A brief glimpse into the figures below shows that there is indeed a noticeable difference in hashtag usage between users of each news outlet, more specifically with news outlets of differing political alignments. We found that politically charged words are the most prevalent separation between each collection of hashtags.
+
+![bbc](figures\BBCWorld_hashtag_counts.png)
+![breitbard](figures\BreitbartNews_hashtag_counts.png)
+![cbs](figures\CBSNews_hashtag_counts.png)
+![cnn](figures\CNN_hashtag_counts.png)
+![fox](figures\FoxNews_hashtag_counts.png)
+![msnbc](figures\MSNBC_hashtag_counts.png)
+![nyt](figures\NYTimes_hashtag_counts.png)
+![rt](figures\RTAmerica_hashtag_counts.png)
 
 
 ## Related Literature
-U.S. politics have always been a topic where much rely on news outlets to interpret critical pieces of information such as voting matters; it is clear that much research has been done to examine the nature of which 
+Predicting the political alignment of users on social media has always been a topic of interest for many scholars and institutions to research. As social media grows in popularity, more and more users will begin to upload information about their personal lives, and oftentimes their political beliefs, into the public domain for others to interact with. With this ever growing plethora of information, many new approaches have been developed to better understand the characteristics of US voters as opposed to traditional census and polling practices. While our project focuses exclusively on analyzing the hashtag usage of our gathered users compared to an existing dataset of election related tweets, there are many other publications that investigate a user’s actions in more detail.
 
-The examination on the political stances of news media outlets has always been a critical research topic to ensure 
-https://cnets.indiana.edu/wp-content/uploads/conover_prediction_socialcom_pdfexpress_ok_version.pdf
+In <em>Predicting the Political Alignment of Twitter Users</em>, Conover, Goncalves, Ratkiewics, Flammini and Menczer demonstrated several implementations of predicting the political stance of a Twitter user based on their tweets. The paper utilized the hashtags and tweet text to build a machine learning model for predicting a user’s political stance. In a SVM model, the researchers were able to achieve a higher accuracy through metadata on hashtags versus tweet text. This coinsigns with our hypothesis that hashtags will provide the best viable separation in how users display their political stance. Their analysis also showed clear clusters that represented the two respective political groups, republicans and democrats. Whereas the researchers defined the political stance of hashtags through Latent Semantic Analysis to discover political affiliation of hashtags, our group will be plotting the hashtag vectors of each news outlet as a whole to demonstrate the differences of news outlets in terms of vector space.
 
 ## Methodology
 We are adopting an unsupervised approach towards quantifying the term political spectrum. In short, we plan to construct a complete graph among the news stations - where the nodes are our news stations in question and the edges are weighted by some similarity measure between every pair of news stations - and maps the graph onto the euclidean space through graph embedding. The resultant plot - of the nodes lying in the euclidean space  (1-D or otherwise) in a fashion relative to their pairwise similarity - and the analysis of which would be the main answer to our research question. 
