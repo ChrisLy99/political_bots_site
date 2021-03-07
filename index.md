@@ -13,21 +13,6 @@ Although most news media outlets already have a pretty well defined political al
 ## Data
 ### An overview of followers and traditionally believed politcal alignment
 
-\begin{table}[]
-\caption{Descriptive Statistics on the Age of Males vs Females}
-\label{tab:my-table}
-\begin{tabular}{@{}lcc@{}}
-\toprule
-                                                 & \multicolumn{1}{l}{\textbf{Male Age (Years)}} & \multicolumn{1}{l}{\textbf{Female Age (Years)}} \\ \midrule
-\multicolumn{1}{l|}{\textbf{Count}}              & 35,829                                        & 24,117                                          \\
-\multicolumn{1}{l|}{\textbf{Mean}}               & 32.02                                         & 32.82                                           \\
-\multicolumn{1}{l|}{\textbf{Standard Deviation}} & 9.03                                          & 10.03                                           \\
-\multicolumn{1}{l|}{\textbf{Min}}                & 18                                            & 18                                              \\
-\multicolumn{1}{l|}{\textbf{Median}}             & 30                                            & 30                                              \\
-\multicolumn{1}{l|}{\textbf{Max}}                & 110                                           & 110                                             \\ \bottomrule
-\end{tabular}
-\end{table}
-
 | News/Media Outlet | Number of Followers | Traditional Political Alignment |
 |-------------------|---------------------|---------------------------------|
 | FoxNews           | 20M                 | Towards Right                   |
@@ -41,6 +26,7 @@ Although most news media outlets already have a pretty well defined political al
 | BreitBartNews     | 1.4M                | Far Right                       |
 
 Data sourced from https://guides.lib.umich.edu/c.php?g=637508&p=4462444
+
 ### Collection
 Through use of the Twitter API, we are able to gather any data that was made publicly available on the Twitter platform. Per the terms of this API, we are unable to access any tweet that is protected by a private account or has been deleted. Although we are collecting tweet data from individual users, we will only be analyzing aggregated values from hashtags and will not be releasing any individual data points.
 
@@ -61,6 +47,15 @@ Our first visualization was a "Word Cloud" designed to display the most popular 
 
 A brief glimpse into the figures below show that there is indeed a noticeable difference in hashtag usage between users of each news outlet. We found that politically charged words are the most prevalent separation between each collection of hashtags and 
 
+![gras](figures\BBCWorld_hashtag_counts.png)
+![gras](figures\BreitbartNews_hashtag_counts.png)
+![gras](figures\CBSNews_hashtag_counts.png)
+![gras](figures\CNN_hashtag_counts.png)
+![gras](figures\FoxNews_hashtag_counts.png)
+![gras](figures\MSNBC_hashtag_counts.png)
+![gras](figures\NYTimes_hashtag_counts.png)
+![gras](figures\RTAmerica_hashtag_counts.png)
+
 
 ## Related Literature
 U.S. politics have always been a topic where much rely on news outlets to interpret critical pieces of information such as voting matters; it is clear that much research has been done to examine the nature of which 
@@ -71,7 +66,11 @@ https://cnets.indiana.edu/wp-content/uploads/conover_prediction_socialcom_pdfexp
 ## Methodology
 We are adopting an unsupervised approach towards quantifying the term political spectrum. In short, we plan to construct a complete graph among the news stations - where the nodes are our news stations in question and the edges are weighted by some similarity measure between every pair of news stations - and maps the graph onto the euclidean space through graph embedding. The resultant plot - of the nodes lying in the euclidean space  (1-D or otherwise) in a fashion relative to their pairwise similarity - and the analysis of which would be the main answer to our research question. 
 
-The question then largely boils down to the definition of similarity between news stations. We formally define the concept of similarity between two news stations to be the $$1 - \frac{\Sigma\min(X_{1i}X_{2i})}{\Sigma\max(X_{1i}X_{2i})}$$ where $$X_{1i}$$ and $$X_{2i}$$ are vectors of hashtag occurrences constructed from the timeline of users who recently retweeted news from the corresponding news station. To make the hashtags political in nature, the hashtag vectors are all subsampled under the same feature space as that obtained from the election dataset. In other words, we record every hashtag that occurred in the election dataset, and count the total occurrences of these hashtags in the timelines of users that interacted with each news station. For every pair of hashtag vectors constructed in this manner, where every element corresponds to the occurrence of a hashtag in a fixed hashtag space, the similarity is calculated according to the above formulation and the resultant value is assigned as the weight to the edges among nodes. 
+The question then largely boils down to the definition of similarity between news stations. We formally define the concept of similarity between two news stations to be the 
+
+$$1 - \frac{\Sigma\min(X_{1i}X_{2i})}{\Sigma\max(X_{1i}X_{2i})}$$ where $$X_{1i}$$ and $$X_{2i}$$ 
+
+are vectors of hashtag occurrences constructed from the timeline of users who recently retweeted news from the corresponding news station. To make the hashtags political in nature, the hashtag vectors are all subsampled under the same feature space as that obtained from the election dataset. In other words, we record every hashtag that occurred in the election dataset, and count the total occurrences of these hashtags in the timelines of users that interacted with each news station. For every pair of hashtag vectors constructed in this manner, where every element corresponds to the occurrence of a hashtag in a fixed hashtag space, the similarity is calculated according to the above formulation and the resultant value is assigned as the weight to the edges among nodes. 
 
 To recap we define the position of news stations in a political spectrum as their relative position in euclidean space embedded from a graph that stores the similarity, characterized as a function of two vectors of hashtags under the same feature space, as edge weights between vertices. There are a few advantages and disadvantages ostensible upon its conception. 
 
