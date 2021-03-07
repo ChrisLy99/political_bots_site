@@ -89,7 +89,9 @@ We are adopting an unsupervised approach towards quantifying the term political 
 
 The question then largely boils down to the definition of similarity between news stations. We formally define the concept of similarity between two news stations to be the 
 
-![equations](figures\equations.png)
+<p align="center">
+  <img src="figures\equations.png" />
+</p>
 
 are vectors of hashtag occurrences constructed from the timeline of users who recently retweeted news from the corresponding news station. To make the hashtags political in nature, the hashtag vectors are all subsampled under the same feature space as that obtained from the election dataset. In other words, we record every hashtag that occurred in the election dataset, and count the total occurrences of these hashtags in the timelines of users that interacted with each news station. For every pair of hashtag vectors constructed in this manner, where every element corresponds to the occurrence of a hashtag in a fixed hashtag space, the similarity is calculated according to the above formulation and the resultant value is assigned as the weight to the edges among nodes. 
 
