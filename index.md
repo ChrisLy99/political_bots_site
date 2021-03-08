@@ -118,6 +118,14 @@ The greatest distance is between Breitbart News and Fox News with the next great
 
 The results of the spectral embedding did not align with the expected results. This has several implications about the underlying assumptions made which were discussed in the methodology section. That would be that the use of hashtags is sufficient in representing the user’s political affiliation and in turn, the news station as well. However, if taking the results at face value, this brings up further questions about the nature of the relationship between the viewer base and the news networks as well as the difference in behavior  caused by the setting of social media and an online world.
 
+# Discussion
+The results of the spectral embedding did not align with the expected results. This has several implications about the underlying assumptions made which were discussed in the methodology section. That would be that the use of hashtags is sufficient in representing the user’s political affiliation and in turn, the news station as well. However, if taking the results at face value, this brings up further questions about the nature of the relationship between the viewer base and the news networks as well as the difference in behavior caused by the setting of social media and an online world.
+	
+To further explore what caused such discrepancy between our expectation and result, we singled out the top hashtags from Fox users and BreitbartNews users, the two news outlets furthest from each other on the spectrum for comparison.  Listing out the top 30 hashtags from the respective news outlet (fig 3.3.1 and 3.3.2), there are only two hashtags - #stopthesteal and #- that exists in both lists. However, despite literal difference between hashtags from two outlets, the general 
+
+![fox_news](figures/fox_news_hashtags.png)
+![breitbart](figures/breitbart_hashtags.png)
+
 # Conclusions
 Initially, we hoped to discern the discrepancy between traditional notions of news outlets’ political affiliation and the political affiliation of their viewer base on social media. Our initial results did not align with our expectations which instead raised further questions about our methodology but also the nature of social media and the dynamics of online presentation. Though there were a number of limitations our team faced. To begin with, there was space and time limitations to collecting a more extensive dataset as well as utilizing a larger amount of users per news station partially due to api call limits.
 
