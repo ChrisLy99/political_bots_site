@@ -95,6 +95,9 @@ We formally define the concept of similarity between two news stations to be the
 The method we chose for graph embedding is Laplacian Eigenmap. The minimization goal of the method, which is $$\sum_{ij}(y_i - y_j)^2W_{ij}$$  (y denotes euclidean coordinate of a node and Wij denotes the edge weight between the two nodes), rewards short pairwise euclidean distance based on edge weight. This largely coincides with our definition of a political spectrum and therefore is a sensible option for embedding. 
 
 To recap we define the position of news stations in a political spectrum as their relative position in euclidean space embedded from a graph that stores pairwise similarity, characterized as a function of two vectors of hashtags under the same feature space, as edge weights between vertices. There are a few advantages and disadvantages ostensible upon its conception. 
+<p align="center">
+  <img src="figures\equations.png" />
+</p>
 
 # Results
 Through reducing the graph to a 1-D euclidean space, we can observe the pairwise similarity between the news stations. Again, it is important to note that the plot only captures the relative position of the news stations from the higher dimension euclidean space that they reside in. However, the relative distance between the news stations are still observable from the plot. 
