@@ -89,15 +89,26 @@ In <em>Predicting the Political Alignment of Twitter Users</em>, Conover, Goncal
 We are adopting an unsupervised approach towards quantifying the concept of political spectrum. In short, we define the political spectrum to be the 1-D Euclidean space where the news station lies and where outlets with similar political inclination would be close to one another. To transform the news stations into said space, we plan to construct a complete graph among the news stations - where the nodes are our news stations in question and the edges are weighted by our pairwise similarity (to be defined in the next paragraph) measure - and maps the graph onto the euclidean space through spectral embedding using Laplacian EigenMap. The resultant plot - of the nodes lying in the euclidean space  in a fashion relative to their pairwise similarity - would be the main answer to our research question. 
 
 ## Defining Pairwise Similarity for Graph
-We formally define the concept of similarity between two news stations to be the $$1 - \frac{\Sigma\min(X_{1i}X_{2i})}{\Sigma\max(X_{1i}X_{2i})}$$  where $X_{1}$ and $X_{2}$ are feature vectors for the two news stations. The feature space of the vector is the hashtags used in tweets in the election dataset and the value for each feature is the normalized/unnormalized (dependent on configuration) number of occurrences of each hashtag in the user timeline dataset for each news outlet. Aside from the aforementioned optional normalization of count of occurrences, other configuration of the feature space includes removing overly neutral hashtags based on a set of pre-defined hashtags (such as Covid-19, coronavirus) in an attempt to remove overwhelming hashtags with overly neutral net implication. This method is our attempt to capture the similarity in political view between pairs of news stations in an unsupervised approach. 
+We formally define the concept of similarity between two news stations to be the
 
-## Embedding Graph
-The method we chose for graph embedding is Laplacian Eigenmap. The minimization goal of the method, which is $$\sum_{ij}(y_i - y_j)^2W_{ij}$$  (y denotes euclidean coordinate of a node and Wij denotes the edge weight between the two nodes), rewards short pairwise euclidean distance based on edge weight. This largely coincides with our definition of a political spectrum and therefore is a sensible option for embedding. 
-
-To recap we define the position of news stations in a political spectrum as their relative position in euclidean space embedded from a graph that stores pairwise similarity, characterized as a function of two vectors of hashtags under the same feature space, as edge weights between vertices. There are a few advantages and disadvantages ostensible upon its conception. 
 <p align="center">
   <img src="figures\equations.png" />
 </p>
+
+are feature vectors for the two news stations. The feature space of the vector is the hashtags used in tweets in the election dataset and the value for each feature is the normalized/unnormalized (dependent on configuration) number of occurrences of each hashtag in the user timeline dataset for each news outlet. Aside from the aforementioned optional normalization of count of occurrences, other configuration of the feature space includes removing overly neutral hashtags based on a set of pre-defined hashtags (such as Covid-19, coronavirus) in an attempt to remove overwhelming hashtags with overly neutral net implication. This method is our attempt to capture the similarity in political view between pairs of news stations in an unsupervised approach. 
+
+## Embedding Graph
+The method we chose for graph embedding is Laplacian Eigenmap. The minimization goal of the method, which is
+
+<p align="center">
+  <img src="figures\graph_equations.png" />
+</p>  
+
+(y denotes euclidean coordinate of a node and Wij denotes the edge weight between the two nodes), rewards short pairwise euclidean distance based on edge weight. This largely coincides with our definition of a political spectrum and therefore is a sensible option for embedding. 
+
+To recap we define the position of news stations in a political spectrum as their relative position in euclidean space embedded from a graph that stores pairwise similarity, characterized as a function of two vectors of hashtags under the same feature space, as edge weights between vertices. There are a few advantages and disadvantages ostensible upon its conception. 
+
+
 
 # Results
 Through reducing the graph to a 1-D euclidean space, we can observe the pairwise similarity between the news stations. Again, it is important to note that the plot only captures the relative position of the news stations from the higher dimension euclidean space that they reside in. However, the relative distance between the news stations are still observable from the plot. 
