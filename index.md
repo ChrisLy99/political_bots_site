@@ -97,6 +97,10 @@ We formally define the concept of similarity between two news stations to be the
 
 are feature vectors for the two news stations. The feature space of the vector is the hashtags used in tweets in the election dataset and the value for each feature is the normalized/unnormalized (dependent on configuration) number of occurrences of each hashtag in the user timeline dataset for each news outlet. Aside from the aforementioned optional normalization of count of occurrences, other configuration of the feature space includes removing overly neutral hashtags based on a set of pre-defined hashtags (such as Covid-19, coronavirus) in an attempt to remove overwhelming hashtags with overly neutral net implication. This method is our attempt to capture the similarity in political view between pairs of news stations in an unsupervised approach. 
 
+<p align="center">
+  <img src="figures\data_pipeline.png" />
+</p>
+
 ## Embedding Graph
 The method we chose for graph embedding is Laplacian Eigenmap. The minimization goal of the method, which is
 
