@@ -1,7 +1,7 @@
 # Political Polarization of Major News Networks on Twitter
 
 ## Abstract
-We will analyze the users who interact with the Twitter accounts of various popular news networks to compare their alignment across the U.S. political spectrum. We will be collecting hashtags used in the users' home timelines to classify their political stance as well as create a graph analysis between the news networks as a whole. Through this, we demonstrate the location where each news network lies on the U.S. political spectrum and how they lie relative in hashtag vector space to one another.
+We will construct a geometric definition of the political spectrum of major US news outlets through an unsupervised approach. We collected the retweeters of news outlets in questions, scraped the hashtags used in their individual timelines and cross-reference it with the hasanalyze the users who interact with the Twitter accounts of various popular news networks to compare their alignment across the U.S. political spectrum. We will be collecting hashtags used in the users' own timelines and cross reference it with the hashtags used during election period to classify their political stance as well as create a graph analysis between the news networks as a whole. Through this, we demonstrate the location where each news network lies on the U.S. political spectrum and how they lie relative in hashtag vector space to one another.
 
 ## Introduction
 The major television news networks have always played a key role in delivering important news and information to the public in a predictable and concise manner tailored to their viewers. As a result of this conformation to the preferences of their respective audiences, many news networks have developed a tendency to report news with a bias in various aspects of reporting; most notably, the most prevalent defining characteristic of a news network is its political affiliation. This often leads to skewed information motivated by viewership and rating results.
@@ -84,38 +84,28 @@ Predicting the political alignment of users on social media has always been a to
 
 In <em>Predicting the Political Alignment of Twitter Users</em>, Conover, Goncalves, Ratkiewics, Flammini and Menczer demonstrated several implementations of predicting the political stance of a Twitter user based on their tweets. The paper utilized the hashtags and tweet text to build a machine learning model for predicting a user’s political stance. In a SVM model, the researchers were able to achieve a higher accuracy through metadata on hashtags versus tweet text. This coinsigns with our hypothesis that hashtags will provide the best viable separation in how users display their political stance. Their analysis also showed clear clusters that represented the two respective political groups, republicans and democrats. Whereas the researchers defined the political stance of hashtags through Latent Semantic Analysis to discover political affiliation of hashtags, our group will be plotting the hashtag vectors of each news outlet as a whole to demonstrate the differences of news outlets in terms of vector space.
 
-## Methodology
-We are adopting an unsupervised approach towards quantifying the term political spectrum. In short, we plan to construct a complete graph among the news stations - where the nodes are our news stations in question and the edges are weighted by some similarity measure between every pair of news stations - and maps the graph onto the euclidean space through graph embedding. The resultant plot - of the nodes lying in the euclidean space  (1-D or otherwise) in a fashion relative to their pairwise similarity - and the analysis of which would be the main answer to our research question. 
+# Methodology
+## Overall Process
+We are adopting an unsupervised approach towards quantifying the concept of political spectrum. In short, we define the political spectrum to be the 1-D Euclidean space where the news station lies and where outlets with similar political inclination would be close to one another. To transform the news stations into said space, we plan to construct a complete graph among the news stations - where the nodes are our news stations in question and the edges are weighted by our pairwise similarity (to be defined in the next paragraph) measure - and maps the graph onto the euclidean space through spectral embedding using Laplacian EigenMap. The resultant plot - of the nodes lying in the euclidean space  in a fashion relative to their pairwise similarity - would be the main answer to our research question. 
 
-The question then largely boils down to the definition of similarity between news stations. We formally define the concept of similarity between two news stations to be the 
+## Defining Pairwise Similarity for Graph
+We formally define the concept of similarity between two news stations to be the $$1 - \frac{\Sigma\min(X_{1i}X_{2i})}{\Sigma\max(X_{1i}X_{2i})}$$  where $X_{1}$ and $X_{2}$ are feature vectors for the two news stations. The feature space of the vector is the hashtags used in tweets in the election dataset and the value for each feature is the normalized/unnormalized (dependent on configuration) number of occurrences of each hashtag in the user timeline dataset for each news outlet. Aside from the aforementioned optional normalization of count of occurrences, other configuration of the feature space includes removing overly neutral hashtags based on a set of pre-defined hashtags (such as Covid-19, coronavirus) in an attempt to remove overwhelming hashtags with overly neutral net implication. This method is our attempt to capture the similarity in political view between pairs of news stations in an unsupervised approach. 
 
-$$
-1 - \frac{\Sigma\min(X_{1i}X_{2i})}{\Sigma\max(X_{1i}X_{2i})}$$ where $$X_{1i}$$ and $$X_{2i}
-$$ 
+## Embedding Graph
+The method we chose for graph embedding is Laplacian Eigenmap. The minimization goal of the method, which is $$\sum_{ij}(y_i - y_j)^2W_{ij}$$  (y denotes euclidean coordinate of a node and Wij denotes the edge weight between the two nodes), rewards short pairwise euclidean distance based on edge weight. This largely coincides with our definition of a political spectrum and therefore is a sensible option for embedding. 
 
-$$
-\begin{aligned}
-  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
-  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
-  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
-      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
-      \vdots & \ddots & \vdots \\
-      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
-    \end{array} \right)
-  \left( \begin{array}{c}
-      y_1 \\
-      \vdots \\
-      y_n
-    \end{array} \right)
-\end{aligned}
-$$
+To recap we define the position of news stations in a political spectrum as their relative position in euclidean space embedded from a graph that stores pairwise similarity, characterized as a function of two vectors of hashtags under the same feature space, as edge weights between vertices. There are a few advantages and disadvantages ostensible upon its conception. 
 
-are vectors of hashtag occurrences constructed from the timeline of users who recently retweeted news from the corresponding news station. To make the hashtags political in nature, the hashtag vectors are all subsampled under the same feature space as that obtained from the election dataset. In other words, we record every hashtag that occurred in the election dataset, and count the total occurrences of these hashtags in the timelines of users that interacted with each news station. For every pair of hashtag vectors constructed in this manner, where every element corresponds to the occurrence of a hashtag in a fixed hashtag space, the similarity is calculated according to the above formulation and the resultant value is assigned as the weight to the edges among nodes. 
+# Results
+Through reducing the graph to a 1-D euclidean space, we can observe the pairwise similarity between the news stations. Again, it is important to note that the plot only captures the relative position of the news stations from the higher dimension euclidean space that they reside in. However, the relative distance between the news stations are still observable from the plot. 
+The greatest distance is between Breitbart News and Fox News with the next greatest between CNN and New York Times. This finding is contrary to what is expected based on the traditional political alignments of the news stations being observed.
 
-To recap we define the position of news stations in a political spectrum as their relative position in euclidean space embedded from a graph that stores the similarity, characterized as a function of two vectors of hashtags under the same feature space, as edge weights between vertices. There are a few advantages and disadvantages ostensible upon its conception. 
+![1_d_reduction](figures/1_d_reduction.png)
 
-The advantages is that the definition of political spectrum is free of heuristics and thus bias. Unlike the project replication done last quarter, we do not preconceptually determine what hashtags implies what semantic meaning under the political context but rather let the occurrence and absence of vectors capture what it means to be politically similar by themselves. Additionally, the method of quantification transforms the similarity in ideology between two sets of tweets in a bounded manner (between 0 and 1) and does not necessitate skewing in the distribution of values. 
+The results of the spectral embedding did not align with the expected results. This has several implications about the underlying assumptions made which were discussed in the methodology section. That would be that the use of hashtags is sufficient in representing the user’s political affiliation and in turn, the news station as well. However, if taking the results at face value, this brings up further questions about the nature of the relationship between the viewer base and the news networks as well as the difference in behavior  caused by the setting of social media and an online world.
 
-On the other hand, some caveats are equally worth noting. The first of which is that an extremely popular hashtag could skew the results. Trivializing the difference in pairwise similarity among pairs of news stations. Secondly, though we are not introducing biases in the procedure in methods, the formulation of the methods rides on one crucial presupposition - that tweets with hashtags are sufficiently representative of tweets in general, with or without hashtags. Last but not least, due to the nuance in semantics in human language in general, some hashtags were brought up to promote a point while others were points brought up to be criticized. In other words, we are assuming, amidst the hodgepodge form of interactions on twitter among users, that the hashtag space is sufficient for representing a user’s, and subsequently the news station’s, political stance.
+# Conclusions
+Initially, we hoped to discern the discrepancy between traditional notions of news outlets’ political affiliation and the political affiliation of their viewer base on social media. Our initial results did not align with our expectations which instead raised further questions about our methodology but also the nature of social media and the dynamics of online presentation. Though there were a number of limitations our team faced. To begin with, there was space and time limitations to collecting a more extensive dataset as well as utilizing a larger amount of users per news station partially due to api call limits.
 
-To account for these considerations, we will construct two (or potentially three) types of hashtag vectors. The first is the raw count of occurrences of every hashtag in the feature space. The second is the normalized vector (every element between 0 and 1 and sums up to 1) of the occurrences. The potential third vector would be occurrences constructed from only original tweets, precluding retweets. These three types of vector would hopefully help us understand and reduce the effect of skewing, and complexity in tweet interactions. 
+
+
