@@ -8,6 +8,8 @@ It’s not just individuals being called out but also organizations. Due to the 
 
 <p align="center">
   <img src="figures\poltical_spectrum.png" />
+</p>
+<p align="center">
   Political spectrum of various news sources.
 </p>
 
@@ -23,6 +25,6 @@ Creating a measurement of similarity between the hashtags in theory should captu
 
 Keeping up with events that have happened in the previous months, it’s obvious to see the extreme bipartisanship in America. As the 2020 election carried out, news outlets presented news fitting in line with their political alignment which supported the political division. With the strong alignment between the news outlets and their viewer base, it brings into question the influence and impact news outlets have had over the past few years leading up to the culmination of events and political climate currently at hand. At a simple overview, has the people watching the news pushed the news to conform or rather has the news outlets contributed to the polarized political climate. Regardless, it is important to understand the amount of influence news stations have and hold them accountable to the material they present.
 
-References:
+## References:
 1. Pew Research Center Political Spectrum: https://www.pewresearch.org/pj_14-10-21_mediapolarization-08-2/
 2. World Economic Forum: http://reports.weforum.org/global-risks-2013/risk-case-1/digital-wildfires-in-a-hyperconnected-world/
